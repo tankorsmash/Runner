@@ -74,7 +74,6 @@ bool HelloWorld::init()
 
 	Actor* player = new Actor("runner.png", level_1);
 	player->setAnchorPoint(Vec2(0.5, 0.5));
-	player->setPosition(100, 100);
 	level_1->addChild(player);
 
 	this->schedule(schedule_selector(HelloWorld::tick));

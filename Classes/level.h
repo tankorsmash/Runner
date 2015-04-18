@@ -13,6 +13,18 @@ class Level : public BaseNode
         {
 			b2Vec2 gravity = b2Vec2(0.0f, -8.0f);
 			this->_world = new b2World(gravity);
+
+			b2BodyDef ground_bdef;
+			//ground_bdef.position.Set(171, 577);
+			ground_bdef.position.Set(0, 0);
+
+			b2Body* ground_body = _world->CreateBody(&ground_bdef);
+			b2EdgeShape ground_edge_shape;
+			b2FixtureDef ground_shapedef;
+			ground_shapedef.shape = &ground_edge_shape;
+
+			ground_edge_shape.Set(b2Vec2(0, 0), b2Vec2(600 / PTM_RATIO, 0));
+			ground_body->CreateFixture(&ground_shapedef);
 			
         };
 };
