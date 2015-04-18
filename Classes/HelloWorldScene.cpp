@@ -74,7 +74,7 @@ bool HelloWorld::init()
 
 	Actor* player = new Actor("runner.png", level_1);
 	//player->setAnchorPoint(Vec2(0.5, 0.5));
-	level_1->addChild(player);
+	level_1->sprite->addChild(player);
 
 	this->schedule(schedule_selector(HelloWorld::tick));
     
@@ -83,15 +83,20 @@ bool HelloWorld::init()
 
 void HelloWorld::tick(float dt)
 {
+	Rect bbox = this->level_1->sprite->boundingBox();
+
 	this->level_1->_world->Step(dt, 10, 10);
 	for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
 	{
 		if (b->GetUserData() != NULL)
 		{
 			Sprite* sprite = (Sprite*)b->GetUserData();
-			sprite->setPosition(b->GetPosition().x * PTM_RATIO,
-				b->GetPosition().y * PTM_RATIO);
-			sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
+			b2Vec2 b_pos = b->GetPosition();
+			Vec2 new_pos = Vec2(
+				b_pos.x * PTM_RATIO,
+				b_pos.y * PTM_RATIO);
+			sprite->setPosition(new_pos);
+			//sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
 		}
 
 	}

@@ -15,8 +15,8 @@ class Level : public BaseNode
 			this->_world = new b2World(gravity);
 
 			b2BodyDef ground_bdef;
-			//ground_bdef.position.Set(171, 577);
-			ground_bdef.position.Set(0, 0);
+			ground_bdef.position.Set(0, (640-577)/PTM_RATIO);
+			//ground_bdef.position.Set(0, 0);
 
 			b2Body* ground_body = _world->CreateBody(&ground_bdef);
 			b2EdgeShape ground_edge_shape;
