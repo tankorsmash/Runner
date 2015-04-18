@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 
 #include "actor.h"
+#include "level.h"
 
 USING_NS_CC;
 
@@ -65,11 +66,14 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
+	Level* level_1 = new Level("level_1.png");
+    this->addChild(level_1);
+
 
 	Actor* player = new Actor("runner.png");
 	player->setAnchorPoint(Vec2(0.5, 0.5));
     player->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-	this->addChild(player);
+	level_1->addChild(player);
 
     
     return true;

@@ -1,3 +1,7 @@
+#pragma once
+#ifndef BASE_NODE_H
+#define BASE_NODE_H
+
 #include "cocos2d.h"
 
 class BaseNode : public cocos2d::Node
@@ -8,3 +12,4 @@ class BaseNode : public cocos2d::Node
         BaseNode(std::string sprite_path);
 
 };
+#endif
