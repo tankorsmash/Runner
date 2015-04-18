@@ -1,10 +1,7 @@
 
-#include "cocos2d.h"
-class Actor : public cocos2d::Node
+#include "base_node.h"
+class Actor : public BaseNode
 {
-
 public:
-	cocos2d::Sprite* sprite;
-	Actor(std::string sprite_path);
-
+	Actor(std::string sprite_path) : BaseNode(sprite_path){};
 };
