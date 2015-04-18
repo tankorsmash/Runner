@@ -40,5 +40,7 @@ class Actor : public BaseNode
         void move_right();
         void move_left();
         void move_up();
+
+        void update(float dt);
 };
 #endif

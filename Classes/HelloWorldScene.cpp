@@ -88,6 +88,8 @@ void HelloWorld::update(float dt)
 
 	}
 
+	this->player->update(dt);
+
 }
 
 
