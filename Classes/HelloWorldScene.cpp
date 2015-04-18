@@ -162,4 +162,8 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     {
         this->player->move_right();
     }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_SPACE) 
+    {
+        this->player->move_up();
+    }
 }

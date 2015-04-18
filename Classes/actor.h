@@ -39,5 +39,6 @@ class Actor : public BaseNode
         void move(float x, float y);
         void move_right();
         void move_left();
+        void move_up();
 };
 #endif
