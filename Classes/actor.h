@@ -13,14 +13,14 @@ class Actor : public BaseNode
 		{
 			b2BodyDef body_def = b2BodyDef();
 			body_def.type = b2_dynamicBody;
-			body_def.position.Set(25 / PTM_RATIO, 100 / PTM_RATIO);
+			body_def.position.Set(250 / PTM_RATIO, 150 / PTM_RATIO);
 			body_def.userData = this->sprite;
 			
 			//b2CircleShape circle;
-			//circle.m_radius = 32.0 / PTM_RATIO;
+			//circle.m_radius = 16.0 / PTM_RATIO;
 
 			b2PolygonShape circle;
-			circle.SetAsBox(32/PTM_RATIO, 32/PTM_RATIO);
+			circle.SetAsBox(16/PTM_RATIO, 16/PTM_RATIO);
 
 
 			b2FixtureDef ballshapedef;
