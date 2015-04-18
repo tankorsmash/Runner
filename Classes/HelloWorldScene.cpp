@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 
+#include "actor.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -63,14 +65,12 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	Actor* player = new Actor("runner.png");
+	player->setAnchorPoint(Vec2(0.5, 0.5));
+    player->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	this->addChild(player);
 
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
     
     return true;
 }
