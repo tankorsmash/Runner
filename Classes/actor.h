@@ -13,7 +13,7 @@ class Actor : public BaseNode
 		{
 			b2BodyDef body_def = b2BodyDef();
 			body_def.type = b2_dynamicBody;
-			body_def.position.Set(100 / PTM_RATIO, 300 / PTM_RATIO);
+			body_def.position.Set(0 / PTM_RATIO, 10 / PTM_RATIO);
 			body_def.userData = this->sprite;
 			
 			b2CircleShape circle;

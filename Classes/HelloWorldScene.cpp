@@ -67,13 +67,13 @@ bool HelloWorld::init()
     this->addChild(label, 1);
 
 	level_1 = new Level("level_1.png");
-	level_1->setAnchorPoint(Vec2(0.5, 0.5));
+	//level_1->setAnchorPoint(Vec2(0.5, 0.5));
     level_1->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(level_1);
 
 
 	Actor* player = new Actor("runner.png", level_1);
-	player->setAnchorPoint(Vec2(0.5, 0.5));
+	//player->setAnchorPoint(Vec2(0.5, 0.5));
 	level_1->addChild(player);
 
 	this->schedule(schedule_selector(HelloWorld::tick));

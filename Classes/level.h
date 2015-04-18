@@ -23,7 +23,7 @@ class Level : public BaseNode
 			b2FixtureDef ground_shapedef;
 			ground_shapedef.shape = &ground_edge_shape;
 
-			ground_edge_shape.Set(b2Vec2(0, 0), b2Vec2(600 / PTM_RATIO, 0));
+			ground_edge_shape.Set(b2Vec2(0, 0), b2Vec2(640 / PTM_RATIO, 0));
 			ground_body->CreateFixture(&ground_shapedef);
 			
         };
