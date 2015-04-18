@@ -66,18 +66,37 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-	Level* level_1 = new Level("level_1.png");
+	level_1 = new Level("level_1.png");
 	level_1->setAnchorPoint(Vec2(0.5, 0.5));
     level_1->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(level_1);
 
 
-	Actor* player = new Actor("runner.png");
+	Actor* player = new Actor("runner.png", level_1);
 	player->setAnchorPoint(Vec2(0.5, 0.5));
+	player->setPosition(100, 100);
 	level_1->addChild(player);
 
+	this->schedule(schedule_selector(HelloWorld::tick));
     
     return true;
+}
+
+void HelloWorld::tick(float dt)
+{
+	this->level_1->_world->Step(dt, 10, 10);
+	for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL)
+		{
+			Sprite* sprite = (Sprite*)b->GetUserData();
+			sprite->setPosition(b->GetPosition().x * PTM_RATIO,
+				b->GetPosition().y * PTM_RATIO);
+			sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
+		}
+
+	}
+
 }
 
 
