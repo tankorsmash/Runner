@@ -59,9 +59,9 @@ bool HelloWorld::init()
     this->addChild(level_1);
 
 
-	Actor* player = new Actor("runner.png", level_1);
+	this->player = new Actor("runner.png", level_1);
 	//player->setAnchorPoint(Vec2(0.5, 0.5));
-	level_1->sprite->addChild(player);
+	level_1->sprite->addChild(this->player);
 
 	// this->schedule(schedule_selector(HelloWorld::tick));
     
@@ -154,7 +154,12 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     else if(keyCode == EventKeyboard::KeyCode::KEY_S) 
     {
     }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_A) 
+    {
+        this->player->move_left();
+    }
     else if(keyCode == EventKeyboard::KeyCode::KEY_D) 
     {
+        this->player->move_right();
     }
 }

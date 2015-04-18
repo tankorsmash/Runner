@@ -5,23 +5,27 @@
 #include "GameLayer.h"
 #include <level.h>
 
+class Actor;
+
 class HelloWorld : public GameLayer
 {
-public:
-    //start of generalized layer stuff
-    static cocos2d::Scene* createScene();
+    public:
+        //start of generalized layer stuff
+        static cocos2d::Scene* createScene();
 
-	void update(float dt);
-    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *pEvent);
-    virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-    
-    CREATE_FUNC(HelloWorld);
+        void update(float dt);
+        void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *pEvent);
+        virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
-    virtual bool init();
-    
-    //class specific stuff from here on out
-	Level* level_1;
-    void menuCloseCallback(cocos2d::Ref* pSender);
+        CREATE_FUNC(HelloWorld);
+
+        virtual bool init();
+
+        //class specific stuff from here on out
+        Level* level_1;
+        void menuCloseCallback(cocos2d::Ref* pSender);
+
+        Actor* player;
 
 };
 
