@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 
+#include "GameLayer.h"
 #include "actor.h"
 #include "level.h"
 
@@ -23,12 +24,11 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
-    if ( !Layer::init() )
-    {
-        return false;
-    }
+#ifdef _WIN32
+    FUNC_INIT_WIN32(HelloWorld);
+#else
+    FUNC_INIT(HelloWorld);
+#endif
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -76,12 +76,12 @@ bool HelloWorld::init()
 	//player->setAnchorPoint(Vec2(0.5, 0.5));
 	level_1->sprite->addChild(player);
 
-	this->schedule(schedule_selector(HelloWorld::tick));
+	// this->schedule(schedule_selector(HelloWorld::tick));
     
     return true;
 }
 
-void HelloWorld::tick(float dt)
+void HelloWorld::update(float dt)
 {
 	Rect bbox = this->level_1->sprite->boundingBox();
 
@@ -116,4 +116,58 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+
+    GameLayer::onTouchBegan(touch, event);
+
+    //this is how you'd use this
+    // if (touch_in_node(some_sprite_instance, touch))
+    // {
+    //     do_something();
+    //     return false;
+    // }
+
+
+    return true; //what does this do? answer: determines whether the touch keeps going or something
+};
+
+void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_BACK || keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) 
+    {
+        this->menuCloseCallback(NULL);
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_Q || keyCode == EventKeyboard::KeyCode::KEY_1) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_E || keyCode == EventKeyboard::KeyCode::KEY_3) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_R || keyCode == EventKeyboard::KeyCode::KEY_4) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_F) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_C) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_TAB) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_Z) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_V) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_S) 
+    {
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_D) 
+    {
+    }
 }
