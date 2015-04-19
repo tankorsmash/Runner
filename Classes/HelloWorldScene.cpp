@@ -10,7 +10,7 @@ Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
-    
+
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
 
@@ -28,72 +28,72 @@ bool HelloWorld::init()
 #else
     FUNC_INIT(HelloWorld);
 #endif
-    
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+            "CloseNormal.png",
+            "CloseSelected.png",
+            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+
+    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
+                origin.y + closeItem->getContentSize().height/2));
 
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
     auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
+
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+                origin.y + visibleSize.height - label->getContentSize().height));
 
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-	level_1 = new Level("level_1.png");
-	//level_1->setAnchorPoint(Vec2(0.5, 0.5));
+    level_1 = new Level("level_1.png");
+    //level_1->setAnchorPoint(Vec2(0.5, 0.5));
     level_1->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(level_1);
 
 
-	this->player = new Actor("runner.png", level_1, false);
-	this->brick = new Actor("brick.png", level_1, true);
+    this->player = new Actor("runner.png", level_1, false);
+    this->brick = new Actor("brick.png", level_1, true);
     this->brick->SetBodyPosition(500, (640-577));
-	//player->setAnchorPoint(Vec2(0.5, 0.5));
-	level_1->sprite->addChild(this->player);
-	level_1->sprite->addChild(this->brick);
+    //player->setAnchorPoint(Vec2(0.5, 0.5));
+    level_1->sprite->addChild(this->player);
+    level_1->sprite->addChild(this->brick);
 
-	// this->schedule(schedule_selector(HelloWorld::tick));
-    
+    // this->schedule(schedule_selector(HelloWorld::tick));
+
     return true;
 }
 
 void HelloWorld::update(float dt)
 {
-	Rect bbox = this->level_1->sprite->boundingBox();
+    Rect bbox = this->level_1->sprite->boundingBox();
 
 
-	//move brick to the left
+    //move brick to the left
     this->brick->SetBodyPositionRelative(-2, 0);
 
-	this->level_1->_world->Step(dt, 10, 10);
-	for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
-	{
-		if (b->GetUserData() != NULL)
-		{
-			Sprite* sprite = (Sprite*)b->GetUserData();
-			b2Vec2 b_pos = b->GetPosition();
-			Vec2 new_pos = Vec2(
-				b_pos.x * PTM_RATIO,
-				b_pos.y * PTM_RATIO);
-			sprite->setPosition(new_pos);
-			sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
-		}
+    this->level_1->_world->Step(dt, 10, 10);
+    for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
+    {
+        if (b->GetUserData() != NULL)
+        {
+            Sprite* sprite = (Sprite*)b->GetUserData();
+            b2Vec2 b_pos = b->GetPosition();
+            Vec2 new_pos = Vec2(
+                    b_pos.x * PTM_RATIO,
+                    b_pos.y * PTM_RATIO);
+            sprite->setPosition(new_pos);
+            sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
+        }
 
-	}
+    }
 
     this->player->update(dt);
 }
@@ -102,7 +102,7 @@ void HelloWorld::update(float dt)
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-	MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+    MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
     return;
 #endif
 
