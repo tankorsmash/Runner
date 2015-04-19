@@ -60,8 +60,10 @@ bool HelloWorld::init()
 
 
 	this->player = new Actor("runner.png", level_1);
+	this->brick = new Actor("brick.png", level_1);
 	//player->setAnchorPoint(Vec2(0.5, 0.5));
 	level_1->sprite->addChild(this->player);
+	level_1->sprite->addChild(this->brick);
 
 	// this->schedule(schedule_selector(HelloWorld::tick));
     
@@ -87,8 +89,6 @@ void HelloWorld::update(float dt)
 		}
 
 	}
-
-	this->player->update(dt);
 
 }
 

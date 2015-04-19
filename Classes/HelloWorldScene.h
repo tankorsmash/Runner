@@ -26,6 +26,7 @@ class HelloWorld : public GameLayer
         void menuCloseCallback(cocos2d::Ref* pSender);
 
         Actor* player;
+        Actor* brick;
 
 };
 
