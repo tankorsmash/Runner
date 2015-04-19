@@ -17,8 +17,8 @@ Actor::Actor(std::string sprite_path, Level* lvl) : BaseNode(sprite_path)
     b2FixtureDef ballshapedef;
     ballshapedef.shape = &circle;
     ballshapedef.density = 1.0f;
-    ballshapedef.friction = 0.2f;
-    ballshapedef.restitution = 0.8f;
+    ballshapedef.friction = 0.6f;
+    ballshapedef.restitution = 0.5f;
 
     _body = lvl->_world->CreateBody(&body_def);
     _body->CreateFixture(&ballshapedef);
