@@ -155,15 +155,16 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     else if(keyCode == EventKeyboard::KeyCode::KEY_Z) 
     {
     }
-    else if(keyCode == EventKeyboard::KeyCode::KEY_V) 
+    else if(keyCode == EventKeyboard::KeyCode::KEY_W) 
     {
-    }
-    else if(keyCode == EventKeyboard::KeyCode::KEY_S) 
-    {
+        this->player->move_up();
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_A) 
     {
         this->player->move_left();
+    }
+    else if(keyCode == EventKeyboard::KeyCode::KEY_S) 
+    {
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_D) 
     {
