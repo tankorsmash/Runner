@@ -16,6 +16,7 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
         body_def.type = b2_dynamicBody;
     };
     body_def.position.Set(250 / PTM_RATIO, 150 / PTM_RATIO);
+	body_def.fixedRotation = true;
     body_def.userData = this->sprite;
 
     //b2CircleShape body_shape;
