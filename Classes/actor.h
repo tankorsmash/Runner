@@ -14,7 +14,6 @@ class Actor : public BaseNode
         //if true, don't move
         bool is_obstacle;
 
-        b2Body* _body;
         void move(float x, float y);
         void move_right();
         void move_left();
