@@ -1,7 +1,5 @@
 #include "level.h"
 
-
-
 Level::Level(std::string sprite_path) : BaseNode(sprite_path)
 {
     b2Vec2 gravity = b2Vec2(0.0f, -8.0f);
