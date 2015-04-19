@@ -74,6 +74,11 @@ void HelloWorld::update(float dt)
 {
 	Rect bbox = this->level_1->sprite->boundingBox();
 
+
+	//move brick to the left
+    auto old_pos = this->brick->_body->GetPosition();
+    this->brick->_body->SetTransform(b2Vec2(old_pos.x - (0.5/PTM_RATIO), old_pos.y), this->brick->_body->GetAngle());
+
 	this->level_1->_world->Step(dt, 10, 10);
 	for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
 	{
@@ -90,6 +95,7 @@ void HelloWorld::update(float dt)
 
 	}
 
+    this->player->update(dt);
 }
 
 
