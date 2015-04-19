@@ -14,7 +14,10 @@ class BaseNode : public cocos2d::Node
         cocos2d::Sprite* sprite;
         BaseNode(std::string sprite_path);
 
-        b2Body* _body;
+        b2Body* _body = NULL;
+
+		void SetBodyPosition(int x, int y);
+        void SetBodyPositionRelative(int x, int y);
 
 };
 #endif
