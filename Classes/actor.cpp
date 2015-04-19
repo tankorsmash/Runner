@@ -2,10 +2,19 @@
 
 USING_NS_CC;
 
-Actor::Actor(std::string sprite_path, Level* lvl) : BaseNode(sprite_path)
+Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(sprite_path)
 {
     b2BodyDef body_def = b2BodyDef();
-    body_def.type = b2_dynamicBody;
+
+    this->is_obstacle = is_obstacle;
+    if (is_obstacle)
+    {
+        body_def.type = b2_staticBody;
+    }
+    else
+    {
+        body_def.type = b2_dynamicBody;
+    };
     body_def.position.Set(250 / PTM_RATIO, 150 / PTM_RATIO);
     body_def.userData = this->sprite;
 

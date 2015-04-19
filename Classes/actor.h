@@ -9,7 +9,10 @@
 class Actor : public BaseNode
 {
     public:
-        Actor(std::string sprite_path, Level* lvl);
+        Actor(std::string sprite_path, Level* lvl, bool is_obstacle);
+
+        //if true, don't move
+        bool is_obstacle;
 
         b2Body* _body;
         void move(float x, float y);

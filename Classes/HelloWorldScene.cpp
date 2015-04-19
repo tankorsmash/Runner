@@ -59,8 +59,8 @@ bool HelloWorld::init()
     this->addChild(level_1);
 
 
-	this->player = new Actor("runner.png", level_1);
-	this->brick = new Actor("brick.png", level_1);
+	this->player = new Actor("runner.png", level_1, false);
+	this->brick = new Actor("brick.png", level_1, true);
 	//player->setAnchorPoint(Vec2(0.5, 0.5));
 	level_1->sprite->addChild(this->player);
 	level_1->sprite->addChild(this->brick);
