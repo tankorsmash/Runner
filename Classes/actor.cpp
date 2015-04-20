@@ -62,12 +62,12 @@ void Actor::move_left()
 
 void Actor::update(float dt)
 {
-    auto inertia = this->_body->GetLinearVelocity();
-    if (inertia.x >= 0)
+    auto velocity = this->_body->GetLinearVelocity();
+    if (velocity.x > 0.5)
     {
         this->sprite->setFlippedX(false);
     }
-    else if (inertia.x < 0)
+    else if (velocity.x < -0.5)
     {
         this->sprite->setFlippedX(true);
     }
