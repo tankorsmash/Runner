@@ -5,6 +5,12 @@ USING_NS_CC;
 BaseNode::BaseNode(std::string sprite_path)
 {
 	this->sprite = Sprite::create(sprite_path);
+    if (this->sprite == NULL)
+    {
+        std::stringstream ss;
+        ss << sprite_path << " is probably missing, this'll cause problems. Check the runner/Resources folder for it." << std::endl;
+        cocos2d::log("%s", ss.str().c_str());
+    };
 	//this->sprite->setAnchorPoint(Vec2(0.5, 0.5));
 	this->sprite->setPosition(0, 0);
 	this->addChild(this->sprite);
