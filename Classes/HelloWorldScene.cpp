@@ -181,6 +181,7 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_S) 
     {
+        this->player->set_crouch(!this->player->is_crouched);
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_D) 
     {

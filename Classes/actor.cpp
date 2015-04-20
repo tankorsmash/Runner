@@ -75,5 +75,14 @@ void Actor::update(float dt)
     else if (velocity.x < -0.5)
     {
         this->sprite->setFlippedX(true);
+    };
+
+    if (this->is_crouched)
+    {
+        this->sprite->setScale(0.5);
     }
+    else
+    {
+        this->sprite->setScale(1.0);
+    };
 };
