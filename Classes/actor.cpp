@@ -28,14 +28,14 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
     b2PolygonShape body_shape;
     body_shape.SetAsBox(sprite_size.x/PTM_RATIO/2, sprite_size.y/PTM_RATIO/2);
 
-    b2FixtureDef ballshapedef;
-    ballshapedef.shape = &body_shape;
-    ballshapedef.density = 1.0f;
-    ballshapedef.friction = 1.0f;
-    ballshapedef.restitution = 0.1f;
+    b2FixtureDef actor_fixture;
+    actor_fixture.shape = &body_shape;
+    actor_fixture.density = 1.0f;
+    actor_fixture.friction = 1.0f;
+    actor_fixture.restitution = 0.1f;
 
     _body = lvl->_world->CreateBody(&body_def);
-    _body->CreateFixture(&ballshapedef);
+    _body->CreateFixture(&actor_fixture);
 
 
 }
