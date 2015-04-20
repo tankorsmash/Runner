@@ -31,7 +31,7 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
     b2FixtureDef ballshapedef;
     ballshapedef.shape = &body_shape;
     ballshapedef.density = 1.0f;
-    ballshapedef.friction = 0.6f;
+    ballshapedef.friction = 1.0f;
     ballshapedef.restitution = 0.1f;
 
     _body = lvl->_world->CreateBody(&body_def);
