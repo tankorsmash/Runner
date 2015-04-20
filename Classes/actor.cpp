@@ -81,9 +81,8 @@ void Actor::update(float dt)
     {
         this->sprite->setScale(0.5);
 
-        b2Fixture fix = this->_body->GetFixtureList()[0];
-        //this line crashed in b2Body.cpp, ln241
-        this->_body->DestroyFixture(&fix);
+        b2Fixture* fix = &this->_body->GetFixtureList()[0];
+        this->_body->DestroyFixture(fix);
 
         auto sprite_size = this->sprite->getContentSize();
 
