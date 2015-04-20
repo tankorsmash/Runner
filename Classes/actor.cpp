@@ -18,6 +18,7 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
     body_def.position.Set(250 / PTM_RATIO, 150 / PTM_RATIO);
 	body_def.fixedRotation = true;
     body_def.userData = this->sprite;
+    _body = lvl->_world->CreateBody(&body_def);
 
     //b2CircleShape body_shape;
     //body_shape.m_radius = 16.0 / PTM_RATIO;
@@ -34,7 +35,6 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
     actor_fixture.friction = 1.0f;
     actor_fixture.restitution = 0.1f;
 
-    _body = lvl->_world->CreateBody(&body_def);
     _body->CreateFixture(&actor_fixture);
 
 
@@ -80,9 +80,27 @@ void Actor::update(float dt)
     if (this->is_crouched)
     {
         this->sprite->setScale(0.5);
+
+        b2Fixture fix = this->_body->GetFixtureList()[0];
+        //this line crashed in b2Body.cpp, ln241
+        this->_body->DestroyFixture(&fix);
+
+        auto sprite_size = this->sprite->getContentSize();
+
+        b2PolygonShape body_shape;
+        body_shape.SetAsBox(sprite_size.width/2/2/PTM_RATIO, sprite_size.height/2/2/PTM_RATIO);
+
+        b2FixtureDef actor_fixture;
+        actor_fixture.shape = &body_shape;
+        actor_fixture.density = 1.0f;
+        actor_fixture.friction = 1.0f;
+        actor_fixture.restitution = 0.1f;
+
+        _body->CreateFixture(&actor_fixture);
     }
     else
     {
         this->sprite->setScale(1.0);
     };
+
 };
