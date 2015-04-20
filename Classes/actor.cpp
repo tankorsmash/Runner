@@ -16,7 +16,7 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
         body_def.type = b2_dynamicBody;
     };
     body_def.position.Set(250 / PTM_RATIO, 150 / PTM_RATIO);
-	body_def.fixedRotation = true;
+    body_def.fixedRotation = true;
     body_def.userData = this->sprite;
     _body = lvl->_world->CreateBody(&body_def);
 
@@ -63,6 +63,39 @@ void Actor::move_left()
 void Actor::set_crouch(bool val)
 {
     this->is_crouched = val;
+
+    b2Fixture* fix = &this->_body->GetFixtureList()[0];
+    this->_body->DestroyFixture(fix);
+
+    auto sprite_size = this->sprite->getContentSize();
+
+    b2PolygonShape body_shape;
+    b2FixtureDef actor_fixture;
+
+    if (this->is_crouched)
+    {
+        this->sprite->setScale(0.5);
+
+        body_shape.SetAsBox(sprite_size.width / 2 / 2 / PTM_RATIO, sprite_size.height / 2 / 2 / PTM_RATIO);
+
+        actor_fixture.shape = &body_shape;
+        actor_fixture.density = 1.0f;
+        actor_fixture.friction = 1.0f;
+        actor_fixture.restitution = 0.1f;
+    }
+    else
+    {
+        this->sprite->setScale(1.0);
+        body_shape.SetAsBox(sprite_size.width / 2 / PTM_RATIO, sprite_size.height / 2 / PTM_RATIO);
+
+        actor_fixture.shape = &body_shape;
+        actor_fixture.density = 1.0f;
+        actor_fixture.friction = 1.0f;
+        actor_fixture.restitution = 0.1f;
+    };
+
+    _body->CreateFixture(&actor_fixture);
+    _body->ResetMassData();
 };
 
 void Actor::update(float dt)
@@ -77,29 +110,5 @@ void Actor::update(float dt)
         this->sprite->setFlippedX(true);
     };
 
-    if (this->is_crouched)
-    {
-        this->sprite->setScale(0.5);
-
-        b2Fixture* fix = &this->_body->GetFixtureList()[0];
-        this->_body->DestroyFixture(fix);
-
-        auto sprite_size = this->sprite->getContentSize();
-
-        b2PolygonShape body_shape;
-        body_shape.SetAsBox(sprite_size.width/2/2/PTM_RATIO, sprite_size.height/2/2/PTM_RATIO);
-
-        b2FixtureDef actor_fixture;
-        actor_fixture.shape = &body_shape;
-        actor_fixture.density = 1.0f;
-        actor_fixture.friction = 1.0f;
-        actor_fixture.restitution = 0.1f;
-
-        _body->CreateFixture(&actor_fixture);
-    }
-    else
-    {
-        this->sprite->setScale(1.0);
-    };
 
 };
