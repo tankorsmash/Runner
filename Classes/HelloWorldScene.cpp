@@ -83,6 +83,17 @@ void HelloWorld::update(float dt)
         this->brick->SetBodyPosition(640, 640-577);
     };
 
+	auto player_vol = this->player->_body->GetLinearVelocity();
+	auto player_pos = this->player->_body->GetPosition();
+	if (player_pos.x > 640/2/PTM_RATIO)
+	{
+		this->player->move((-0.01*(640-player_pos.x))/PTM_RATIO, 0);
+	}
+	else if(player_pos.x < 640/2/PTM_RATIO)
+	{
+		this->player->move((0.01*(640-player_pos.x))/PTM_RATIO, 0);
+	}
+
     this->level_1->_world->Step(dt, 6, 2);
     for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
     {
