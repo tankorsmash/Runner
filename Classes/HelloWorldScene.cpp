@@ -73,9 +73,6 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-    Rect bbox = this->level_1->sprite->boundingBox();
-
-
 
     //move brick to the left
     this->brick->SetBodyPositionRelative(-2, 0);
