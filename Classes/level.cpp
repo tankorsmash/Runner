@@ -13,6 +13,7 @@ Level::Level(std::string sprite_path) : BaseNode(sprite_path)
     b2EdgeShape ground_edge;
 
     b2FixtureDef ground_fixture_def;
+	ground_fixture_def.restitution = 0.0f;
     ground_fixture_def.shape = &ground_edge;
 
     //floor
