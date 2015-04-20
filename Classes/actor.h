@@ -12,7 +12,10 @@ class Actor : public BaseNode
         Actor(std::string sprite_path, Level* lvl, bool is_obstacle);
 
         //if true, don't move
-        bool is_obstacle;
+        bool is_obstacle = false;
+
+        bool is_crouched = false;
+        void set_crouch(bool val);
 
         void move(float x, float y);
         void move_right();

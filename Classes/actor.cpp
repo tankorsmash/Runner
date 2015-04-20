@@ -60,6 +60,11 @@ void Actor::move_left()
     this->move(-2, 0);
 };
 
+void Actor::set_crouch(bool val)
+{
+    this->is_crouched = val;
+};
+
 void Actor::update(float dt)
 {
     auto velocity = this->_body->GetLinearVelocity();
