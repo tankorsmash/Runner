@@ -104,6 +104,15 @@ bool Actor::toggle_crouch()
     return this->is_crouched;
 };
 
+void Actor::jump()
+{
+    if (! this->is_jumping)
+    {
+        this->move_up();
+        this->is_jumping = true;
+    };
+};
+
 void Actor::update(float dt)
 {
     auto velocity = this->_body->GetLinearVelocity();
@@ -116,5 +125,11 @@ void Actor::update(float dt)
         this->sprite->setFlippedX(true);
     };
 
+    b2Vec2 body_pos = this->_body->GetPosition();
+    float32 adj_y = body_pos.y*PTM_RATIO;
+    if (adj_y < this->jump_threshold)
+    {
+        this->is_jumping = false;
+    }
 
 };

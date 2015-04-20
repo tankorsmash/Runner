@@ -76,6 +76,7 @@ void HelloWorld::update(float dt)
     Rect bbox = this->level_1->sprite->boundingBox();
 
 
+
     //move brick to the left
     this->brick->SetBodyPositionRelative(-2, 0);
     if (this->brick->_body->GetPosition().x < 0)
@@ -85,6 +86,8 @@ void HelloWorld::update(float dt)
 
 	auto player_vol = this->player->_body->GetLinearVelocity();
 	auto player_pos = this->player->_body->GetPosition();
+    // cocos2d::log("%f %f", player_pos.x*PTM_RATIO, player_pos.y*PTM_RATIO);
+
 	if (player_pos.x > 640/2/PTM_RATIO)
 	{
 		this->player->move((-0.01*(640-player_pos.x))/PTM_RATIO, 0);
@@ -139,7 +142,7 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
         this->player->toggle_crouch();
         return false;
     }
-    this->player->move_up();
+    this->player->jump();
 
 
     return true; //this sorta works like jquerys propagate false or whatever, return true if you want the event to keep going
@@ -174,7 +177,7 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_W) 
     {
-        this->player->move_up();
+        this->player->jump();
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_A) 
     {
@@ -190,6 +193,6 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     }
     else if(keyCode == EventKeyboard::KeyCode::KEY_SPACE) 
     {
-        this->player->move_up();
+        this->player->jump();
     }
 }

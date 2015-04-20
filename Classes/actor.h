@@ -18,10 +18,14 @@ class Actor : public BaseNode
         void set_crouch(bool val);
         bool toggle_crouch();
 
+        bool is_jumping = false;
+        float jump_threshold = 80.0f;
+
         void move(float x, float y);
         void move_right();
         void move_left();
         void move_up();
+        void jump();
 
         void update(float dt);
 };
