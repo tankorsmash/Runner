@@ -28,7 +28,6 @@ Actor::Actor(std::string sprite_path, Level* lvl, bool is_obstacle) : BaseNode(s
     b2PolygonShape body_shape;
     body_shape.SetAsBox(sprite_size.x/PTM_RATIO/2, sprite_size.y/PTM_RATIO/2);
 
-
     b2FixtureDef ballshapedef;
     ballshapedef.shape = &body_shape;
     ballshapedef.density = 1.0f;

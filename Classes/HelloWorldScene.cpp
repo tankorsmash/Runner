@@ -78,6 +78,10 @@ void HelloWorld::update(float dt)
 
     //move brick to the left
     this->brick->SetBodyPositionRelative(-2, 0);
+    if (this->brick->_body->GetPosition().x < 0)
+    {
+        this->brick->SetBodyPosition(640, 640-577);
+    };
 
     this->level_1->_world->Step(dt, 10, 10);
     for (b2Body* b = this->level_1->_world->GetBodyList(); b; b = b->GetNext())
