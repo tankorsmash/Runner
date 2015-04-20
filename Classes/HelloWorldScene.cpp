@@ -133,12 +133,13 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 
     GameLayer::onTouchBegan(touch, event);
 
-    //this is how you'd use this
-    // if (touch_in_node(some_sprite_instance, touch))
-    // {
-    //     do_something();
-    //     return false;
-    // }
+
+    if (touch_in_node(this->player, touch))
+    {
+        this->player->toggle_crouch();
+        return false;
+    }
+    this->player->move_up();
 
 
     return true; //this sorta works like jquerys propagate false or whatever, return true if you want the event to keep going

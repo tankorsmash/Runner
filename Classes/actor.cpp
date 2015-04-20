@@ -98,6 +98,12 @@ void Actor::set_crouch(bool val)
     _body->ResetMassData();
 };
 
+bool Actor::toggle_crouch()
+{
+    this->set_crouch(!this->is_crouched);
+    return this->is_crouched;
+};
+
 void Actor::update(float dt)
 {
     auto velocity = this->_body->GetLinearVelocity();

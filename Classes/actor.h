@@ -16,6 +16,7 @@ class Actor : public BaseNode
 
         bool is_crouched = false;
         void set_crouch(bool val);
+        bool toggle_crouch();
 
         void move(float x, float y);
         void move_right();
