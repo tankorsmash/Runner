@@ -6,7 +6,7 @@ Level::Level(std::string sprite_path) : BaseNode(sprite_path)
     this->_world = new b2World(gravity);
 
     b2BodyDef ground_bdef;
-    ground_bdef.position.Set(0, (640-577)/PTM_RATIO);
+    ground_bdef.position.Set(0, (640-577-8)/PTM_RATIO);
     //ground_bdef.position.Set(0, 0);
 
     b2Body* ground_body = _world->CreateBody(&ground_bdef);
