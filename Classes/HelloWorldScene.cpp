@@ -62,9 +62,15 @@ bool HelloWorld::init()
     this->player = new Actor("runner.png", level_1, false);
     this->brick = new Actor("brick.png", level_1, true);
     this->brick->SetBodyPosition(500, (640-577));
+    this->wall_top = new Actor("brick.png", level_1, true);
+    this->wall_top->SetBodyPosition(200, (640-577+16));
+    this->wall_bot = new Actor("brick.png", level_1, true);
+    this->wall_bot->SetBodyPosition(200, (640-577));
     //player->setAnchorPoint(Vec2(0.5, 0.5));
     level_1->sprite->addChild(this->player);
     level_1->sprite->addChild(this->brick);
+    level_1->sprite->addChild(this->wall_top);
+    level_1->sprite->addChild(this->wall_bot);
 
     // this->schedule(schedule_selector(HelloWorld::tick));
 

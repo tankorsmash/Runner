@@ -27,6 +27,8 @@ class HelloWorld : public GameLayer
 
         Actor* player;
         Actor* brick;
+        Actor* wall_top;
+        Actor* wall_bot;
 
 };
 

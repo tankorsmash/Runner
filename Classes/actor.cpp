@@ -116,14 +116,14 @@ void Actor::jump()
 void Actor::update(float dt)
 {
     auto velocity = this->_body->GetLinearVelocity();
-    if (velocity.x > 0.5)
-    {
-        this->sprite->setFlippedX(false);
-    }
-    else if (velocity.x < -0.5)
-    {
-        this->sprite->setFlippedX(true);
-    };
+    // if (velocity.x > 0.5)
+    // {
+    //     this->sprite->setFlippedX(false);
+    // }
+    // else if (velocity.x < -0.5)
+    // {
+    //     this->sprite->setFlippedX(true);
+    // };
 
     b2Vec2 body_pos = this->_body->GetPosition();
     float32 adj_y = body_pos.y*PTM_RATIO;
