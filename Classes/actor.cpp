@@ -47,7 +47,7 @@ void Actor::move(float x, float y)
 
 void Actor::move_up()
 {
-    this->move(0, 4);
+    this->move(0, 5);
 };
 
 void Actor::move_right()
