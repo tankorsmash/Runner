@@ -81,10 +81,21 @@ void HelloWorld::update(float dt)
 {
 
     //move brick to the left
-    this->brick->SetBodyPositionRelative(-2, 0);
-    if (this->brick->_body->GetPosition().x < 0)
+    for (Actor* actor : std::vector<Actor*>({
+                this->brick,
+                this->wall_top,
+                this->wall_bot
+                }))
     {
-        this->brick->SetBodyPosition(640, 640-577);
+        actor->SetBodyPositionRelative(-2, 0);
+        if (actor->_body->GetPosition().x < 0)
+        {
+            actor->SetBodyPosition(640, 640-577);
+            if (actor == this->wall_top)
+            {
+                actor->SetBodyPosition(640, 640 - 577+16);
+            }
+        };
     };
 
 	auto player_vol = this->player->_body->GetLinearVelocity();
